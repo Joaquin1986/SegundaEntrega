@@ -1,92 +1,102 @@
 [
 	{
-		"id": 1,
+		"id": "8055d83b-b2f5-47f5-9561-1396864a39ad",
 		"title": "Coca Cola",
 		"description": "Botella 1L",
 		"price": "150",
-		"thumbnail": "./img/coca-cola.jpg",
+		"thumbnails": [],
 		"code": "abc123",
+		"status": "true",
 		"stock": "50"
 	},
 	{
-		"id": 2,
+		"id": "8b9101ea-90a1-4bec-8aa3-ab61a7c04d89",
 		"title": "Vino Tinto",
 		"description": "Botella 750mL",
 		"price": "870",
-		"thumbnail": "./img/red-wine.jpg",
+		"thumbnails": [],
 		"code": "abc124",
+		"status": "true",
 		"stock": "20"
 	},
 	{
-		"id": 3,
+		"id": "ed857714-c484-4fdc-8277-2ce4377349aa",
 		"title": "Vino Blanco",
 		"description": "Botella 750mL",
 		"price": "690",
-		"thumbnail": "./img/vino-blanco.jpg",
+		"thumbnails": [],
 		"code": "abc127",
+		"status": "true",
 		"stock": "12"
 	},
 	{
-		"id": 4,
+		"id": "92ed9ff4-3a2f-4f7f-951b-f83fa195e907",
 		"title": "Fernet",
 		"description": "Botella 750mL",
 		"price": "540",
-		"thumbnail": "./img/fernet.jpg",
+		"thumbnails": [],
 		"code": "abc125",
+		"status": "true",
 		"stock": "40"
 	},
 	{
-		"id": 5,
+		"id": "5f9f774b-7a4a-4830-a004-4312459d46f4",
 		"title": "Fanta",
 		"description": "Botella 1L",
 		"price": "135",
-		"thumbnail": "./img/fanta.jpg",
+		"thumbnails": [],
 		"code": "abc126",
+		"status": "true",
 		"stock": "40"
 	},
 	{
-		"id": 6,
+		"id": "59d14a6b-31e9-42f3-91ff-bdc3da4f1146",
 		"title": "Jugo Naranja",
 		"description": "Caja 1L",
 		"price": "250",
-		"thumbnail": "./img/jugo-naranja.jpg",
+		"thumbnails": [],
 		"code": "abc131",
+		"status": "true",
 		"stock": "28"
 	},
 	{
-		"id": 7,
+		"id": "775f97de-1eb4-4cf3-83f1-79c9c8f29ee7",
 		"title": "Sprite",
 		"description": "Botella 1L",
 		"price": "140",
-		"thumbnail": "./img/sprite.jpg",
+		"thumbnails": [],
 		"code": "abc130",
+		"status": "true",
 		"stock": "35"
 	},
 	{
-		"id": 8,
+		"id": "9c99a213-971b-4d0a-9b5f-0825c98d480a",
 		"title": "Martini",
 		"description": "Botella 750mL",
 		"price": "675",
-		"thumbnail": "./img/martini.jpg",
+		"thumbnails": [],
 		"code": "abc129",
+		"status": "true",
 		"stock": "25"
 	},
 	{
-		"id": 9,
+		"id": "fdd1f094-e13e-4028-8ae5-f6e0f06579e3",
 		"title": "Red Bull",
 		"description": "Lata 350mL",
 		"price": "140",
-		"thumbnail": "./img/red-bull.jpg",
+		"thumbnails": [],
 		"code": "abc128",
+		"status": "true",
 		"stock": "100"
 	},
 	{
-		"id": 10,
+		"id": "84c6ddc9-5585-4ceb-b460-36deb11c0ab6",
 		"title": "Whisky",
 		"description": "Botella 1L",
 		"price": "540",
-		"thumbnail": "./img/whisky.jpg",
+		"thumbnails": [],
 		"code": "abc132",
+		"status": "true",
 		"stock": "10"
 	}
 ]

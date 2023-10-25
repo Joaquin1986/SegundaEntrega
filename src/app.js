@@ -1,36 +1,13 @@
-// Se importa archivo ProductManager.js
-import { Product, ProductManager } from "./ProductManager.js";
-
-// Constante de Express
+// Imports de Express y Routers
 import express from "express";
-
+import { router as productsRouter } from "./routers/products.router.js";
 
 // Se crea el server express
 const app = express();
+const PORT = 8080;
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Se crea una nueva instancia de la Clase ProductManager
-const pm1 = new ProductManager("./data.json");
+app.use("/api", productsRouter);
 
-app.get("/products", (req, res) => {
-    const { limit } = req.query;
-    if ((!limit || limit < 1)) {
-        return pm1.getProducts().then((products) => res.send({ products }));
-    }
-    if (!parseInt(limit)) return res.send({ "Error": "Límite establecido no válido ⛔" })
-    pm1.getProducts().then((result) => {
-        const products = result;
-        const filteredProducts = products.slice(0, limit)
-        return res.send({ filteredProducts })
-    });
-});
-
-app.get("/products/:pid", (req, res) => {
-    const { pid } = req.params
-    pm1.getProductById(parseInt(pid)).then((product) => {
-        if (product) return res.send(product);
-        return res.send({ "Error": `Producto id #${pid} no encontrado ⛔` });
-    })
-});
-
-app.listen(8080, () => console.log("El server está escuchando en el puerto 8080 ✅"));
+app.listen(PORT, () => console.log(`El servidor está trabajando en el puerto ${PORT} ✅`));
