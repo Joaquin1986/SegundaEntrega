@@ -3,7 +3,6 @@ import { Product, ProductManager } from "../ProductManager.js";
 
 const router = Router();
 const pm1 = new ProductManager("./src/products.json");
-console.log
 
 router.get("/products", (req, res) => {
     const { limit } = req.query;
@@ -14,15 +13,15 @@ router.get("/products", (req, res) => {
     pm1.getProducts().then((result) => {
         const products = result;
         const filteredProducts = products.slice(0, limit)
-        res.status(200).json(filteredProducts);
+        return res.status(200).json(filteredProducts);
     });
 });
 
 router.get("/products/:pid", (req, res) => {
     const { pid } = req.params;
     pm1.getProductById(pid).then((product) => {
-        if (product) res.status(200).json(product);
-        res.status(404).json({ "Error": `Producto id #${pid} no encontrado ⛔` });
+        if (product) return res.status(200).json(product);
+        return res.status(404).json({ "Error": `Producto id #${pid} no encontrado ⛔` });
     })
 });
 
@@ -30,7 +29,7 @@ router.post("/products", (req, res) => {
     const { body } = req;
     const { title, description, price, code, stock } = body;
     if (!title || !description || !price || !code || !stock) {
-        res.status(400).json({
+        return res.status(400).json({
             "⛔Error:":
                 "Producto recibido no es válido. Propiedades vacías o sin definir ⛔"
         });
@@ -44,7 +43,7 @@ router.post("/products", (req, res) => {
                 });
             });
         } catch (error) {
-            res.status(500).json({ error });
+            return res.status(500).json({ error });
         }
     }
 });
@@ -58,7 +57,7 @@ router.put("/products/:pid", (req, res) => {
             pm1.productCodeExists(code).then((exists) => {
                 if (exists) {
                     if (!title || !description || !price || !code || !stock) {
-                        res.status(400).json({
+                        return res.status(400).json({
                             "⛔Error:":
                                 "Producto recibido no es válido. Propiedades vacías o sin definir ⛔"
                         });
@@ -74,14 +73,14 @@ router.put("/products/:pid", (req, res) => {
                         });
                     }
                 } else {
-                    res.status(404).json({ "⛔Error:": "Producto recibido no existe en la base ⛔" });
+                    return res.status(404).json({ "⛔Error:": "Producto recibido no existe en la base ⛔" });
                 }
             });
         } catch (error) {
-            res.status(400).json({ error });
+            return res.status(400).json({ error });
         }
     } else {
-        res.status(400).json({ "⛔Error:": "id recibido de Producto no es válido ⛔" });
+        return res.status(400).json({ "⛔Error:": "id recibido de Producto no es válido ⛔" });
     }
 });
 
@@ -89,8 +88,8 @@ router.delete("/products/:pid", (req, res) => {
     const { pid } = req.params;
     if (pid) {
         pm1.deleteProduct(pid).then((result) => {
-            if (result) res.status(200).json({ "✅Producto Eliminado: ": pid });
-            res.status(404).json({ "⛔Error": `Producto id #${pid} no encontrado ⛔` });
+            if (result) return res.status(200).json({ "✅Producto Eliminado: ": pid });
+            return res.status(404).json({ "⛔Error": `Producto id #${pid} no encontrado ⛔` });
         })
     } else {
         res.status(400).json({ "⛔Error:": "id recibido de Producto no es válido ⛔" });

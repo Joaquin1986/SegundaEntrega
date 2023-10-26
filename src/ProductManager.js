@@ -1,5 +1,4 @@
-// Se definen constante de File System
-import { error } from "console";
+// Se definen los imports
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -45,22 +44,25 @@ class ProductManager {
                     worked = false;
                     throw new Error(`⛔ Error: Código de Producto ya existente (Código:'${productAlreadyExist.code}'|Producto:'${productAlreadyExist.title}')`);
                 }
+                return worked;
             } catch (error) {
                 worked = false;
                 console.error(`⛔ Error: No se pudo grabar el archivo de Productos.
    Descripción del error: ${error.message}`);
+                return worked;
             }
         } else {
             try {
                 this.products.push(product);
                 await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, "\t"), "utf-8");
                 console.log(`✅ Producto '${product.title}' agregado exitosamente`);
+                return worked;
             } catch (error) {
                 worked = false;
                 console.error(`⛔ Error al crear el archivo JSON de productos: ${error.message}`);
+                return worked;
             }
         }
-        return worked;
     }
 
     // Devuelve el array con todos los productos creados hasta el momento
@@ -72,6 +74,7 @@ class ProductManager {
             } catch (error) {
                 console.error(`⛔ Error: No se pudo leer el archivo de Productos.
    Descripción del error: ${error.message}`);
+                return undefined;
             }
         } else {
             console.error("⛔ Error: El archivo de Productos no existe.");
@@ -82,9 +85,9 @@ class ProductManager {
     // En caso de encontrarlo, devuelve un objeto 'Producto' de acuerdo a id proporcionado por argumento.
     // En caso de no encontrarlo, imprime error en la consola.
     async getProductById(id) {
+        let productFound = undefined;
         try {
             this.products = await this.getProducts().then((result) => result);
-            let productFound = undefined;
             this.products.forEach(product => {
                 product.id === id ? productFound = product : null;
             })
@@ -93,8 +96,7 @@ class ProductManager {
             }
             return productFound;
         } catch {
-            //El mensaje de error por falta de acceso al archivo JSON ya es emitido por la función getProducts()
-            //No se agrega aquí, para evitar mensajes duplicados
+            return productFound;
         }
     }
 
