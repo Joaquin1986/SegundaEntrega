@@ -65,6 +65,8 @@ router.put("/products/:pid", (req, res) => {
                         const newProduct = new Product(title, description, price, code, stock);
                         //Se mantiene el mismo 'id' del Producto, ya que el contructor por defecto asigna uno único
                         newProduct.id = pid;
+                        newProduct.status = status;
+                        if (thumbnails) newProduct.thumbnails = thumbnails;
                         pm1.updateProduct(newProduct).then((result) => {
                             result ? res.status(201).json(newProduct) : res.status(500).json({
                                 "⛔Error:":

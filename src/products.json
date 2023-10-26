@@ -98,5 +98,15 @@
 		"code": "abc132",
 		"status": "true",
 		"stock": "10"
+	},
+	{
+		"id": "5b082e6d-035d-43e6-a5be-c9a9d4d279e2",
+		"title": "Refresco Pomelo",
+		"description": "Botella 1,5L",
+		"price": "155",
+		"thumbnails": [],
+		"code": "abc002",
+		"status": "false",
+		"stock": "3"
 	}
 ]
