@@ -6,6 +6,7 @@ import { __dirname } from "./utils.js";
 import { router as productsRouter } from "./routers/products.router.js";
 import { router as cartsRouter } from "./routers/carts.router.js";
 import { router as homeRouter } from "./routers/home.router.js";
+import { router as RealTimeProductsRouter } from "./routers/realTimeProducts.router.js";
 
 // Se crea el server express
 const app = express();
@@ -18,7 +19,8 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "handlebars");
 
-app.use("/", homeRouter);
+app.use("/views", homeRouter);
+app.use("/views", RealTimeProductsRouter);
 app.use("/api", productsRouter);
 app.use("/api", cartsRouter);
 

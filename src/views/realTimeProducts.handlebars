@@ -1,0 +1,18 @@
+<div>
+    <h2><strong>Alta de Producto 📦</strong></h2>
+    <form id="product-form" method="">
+        <input type="text" name="title" id="titleId" placeholder="Nombre" required />
+        <input type="text" name="description" id="descriptionId" placeholder="Descripción" required />
+        <input type="text" name="price" id="priceId" placeholder="Precio" required />
+        <input type="text" name="code" id="codeId" placeholder="Código" required />
+        <input type="text" name="stock" id="stockId" placeholder="Stock" required />
+        <input type="submit" value="enviar">
+    </form>
+    <h2><strong>Lista de Productos en Tiempo Real ⌚</strong></h2>
+    <hr />
+    <div id="product-list">
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>
+</form>
