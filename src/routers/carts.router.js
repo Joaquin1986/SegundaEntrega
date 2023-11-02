@@ -10,7 +10,7 @@ router.get("/carts/:cid", (req, res) => {
         cm1.getCartById(cid).then((cart) => {
             if (cart) return res.status(200).json(cart.products);
             return res.status(404).json({ "⛔Error": `Carrito id '${cid}' no encontrado` });
-        })
+        });
     }
 });
 
