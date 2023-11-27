@@ -1,10 +1,8 @@
 import { Server } from "socket.io";
-import { Product, ProductManager } from "./ProductManager.js";
-
-const pm1 = new ProductManager("./src/products.json");
+import { Product, ProductManager } from "./dao/ProductManager.js";
 
 export const init = (httpServer) => {
-    pm1.getProducts().then((products) => {
+    ProductManager.getProducts().then((products) => {
         const socketServer = new Server(httpServer);
         socketServer.on("connection", (socketClient) => {
             console.log(`Cliente conectado exitosamente 👍: id #${socketClient.id}`);
