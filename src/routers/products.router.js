@@ -14,8 +14,24 @@ router.get("/products", async (req, res) => {
     if (query) {
         criteria.title = query;
     }
-    const products = await productModel.paginate(criteria, options);
-    return res.status(200).json(products);
+    try {
+        const products = await productModel.paginate(criteria, options);
+        return res.status(200).json(buildAnswer({ ...products, sort, query }));
+    } catch {
+        const errorAnswer = {
+            status: "error",
+            payload: [],
+            totalPages: 0,
+            prevPage: null,
+            nextPage: null,
+            page: 0,
+            hasPrevPage: false,
+            hasNextPage: false,
+            prevLink: null,
+            nextLink: null,
+        };
+        return res.status(500).json(errorAnswer);
+    }
 });
 
 router.get("/products/:pid", async (req, res) => {
@@ -88,5 +104,25 @@ router.delete("/products/:pid", async (req, res) => {
         res.status(400).json({ "⛔Error:": "id recibido de Producto no es válido ⛔" });
     }
 });
+
+const buildAnswer = (data) => {
+    const answer = {
+        status: "success",
+        payload: data.docs,
+        totalPages: data.totalPages,
+        prevPage: data.prevPage,
+        nextPage: data.nextPage,
+        page: data.page,
+        hasPrevPage: data.hasPrevPage,
+        hasNextPage: data.hasNextPage,
+        prevLink: data.hasPrevPage ? `http://localhost:8080/api/products?limit=${data.limit}&page=${data.prevPage}` : null,
+        nextLink: data.hasNextPage ? `http://localhost:8080/api/products?limit=${data.limit}&page=${data.nextPage}` : null,
+    }
+    answer.prevLink && data.sort ? answer.prevLink += `&sort=${data.sort}` : null;
+    answer.prevLink && data.query ? answer.prevLink += `&query=${data.query}` : null;
+    answer.nextLink && data.sort ? answer.nextLink += `&sort=${data.sort}` : null;
+    answer.nextLink && data.query ? answer.nextLink += `&query=${data.query}` : null;
+    return answer;
+};
 
 export { router };

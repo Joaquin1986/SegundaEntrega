@@ -45,8 +45,7 @@ class ProductManager {
         try {
             return productModel.find().lean();
         } catch (error) {
-            console.error(`⛔ Error al obtener datos de la BD: ${error.message}`);
-            return undefined;
+            throw new Error(`⛔ Error al obtener datos de la BD: ${error.message}`);
         }
     }
 
@@ -55,14 +54,12 @@ class ProductManager {
     static async getProductById(id) {
         try {
             const product = await productModel.findById(id);
-            console.log(product)
             if (!product) {
                 throw new Error(`⛔ Error: Producto id #${id} no encontrado`);
             }
             return product;
         } catch (error) {
-            console.error(`⛔ Error al obtener datos de la BD: ${error.message}`);
-            return undefined;
+            throw new Error(`⛔ Error al obtener datos de la BD: ${error.message}`);
         }
     }
 
