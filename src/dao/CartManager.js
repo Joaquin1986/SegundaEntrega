@@ -104,7 +104,7 @@ class CartManager {
     // En caso de no encontrarlo, imprime error en la consola.
     static async getCartById(id) {
         try {
-            const cart = await cartModel.find({ _id: id });
+            const cart = await cartModel.find({ _id: id }).lean();
             if (!cart) {
                 throw new Error(`⛔ Error: Carrito ID#${id} no encontrado`);
             }

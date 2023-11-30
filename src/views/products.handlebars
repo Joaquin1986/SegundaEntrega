@@ -1,0 +1,28 @@
+<h1>Vista de Productos 📦</h1>
+    <article>
+        <table>
+            <tr>
+                <th>Nombre: </th>
+                <th>Descripción: </th>
+                <th>Precio($): </th>
+                <th>Código: </th>
+                <th>stock: </th>
+                  <th> </th>
+            </tr>
+            <tbody>
+                {{#each payload}}
+                <tr>
+                    <td>{{this.title}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.stock}}</td>
+                  <td> <a href="#" role="button" class="outline">Agregar 🛒</a></td> 
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <p>Página actual: {{page}}</p>
+        <a href="{{prevLink}}" role="button" class="outline" {{#unless hasPrevPage}} disabled {{/unless}}>Atrás</a>
+        <a href="{{nextLink}}" role="button" class="outline" {{#unless hasNextPage}} disabled {{/unless}}>Siguiente</a>
+    </article>

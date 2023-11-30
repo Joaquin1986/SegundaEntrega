@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { CartManager } from "../dao/CartManager.js";
+import { CartManager } from "../../dao/CartManager.js";
 
 const router = Router();
 
-//ARREGLAR CON STATIC
 router.get("/carts/:cid", async (req, res) => {
     const { cid } = req.params;
     if (cid) {

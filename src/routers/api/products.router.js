@@ -1,6 +1,8 @@
 import { Router } from "express";
-import { Product, ProductManager } from "../dao/ProductManager.js";
-import productModel from "../models/product.model.js";
+import { Product, ProductManager } from "../../dao/ProductManager.js";
+import { buildAnswer } from "../../utils.js";
+import productModel from "../../models/product.model.js";
+
 
 const router = Router();
 
@@ -104,25 +106,5 @@ router.delete("/products/:pid", async (req, res) => {
         res.status(400).json({ "⛔Error:": "id recibido de Producto no es válido ⛔" });
     }
 });
-
-const buildAnswer = (data) => {
-    const answer = {
-        status: "success",
-        payload: data.docs,
-        totalPages: data.totalPages,
-        prevPage: data.prevPage,
-        nextPage: data.nextPage,
-        page: data.page,
-        hasPrevPage: data.hasPrevPage,
-        hasNextPage: data.hasNextPage,
-        prevLink: data.hasPrevPage ? `http://localhost:8080/api/products?limit=${data.limit}&page=${data.prevPage}` : null,
-        nextLink: data.hasNextPage ? `http://localhost:8080/api/products?limit=${data.limit}&page=${data.nextPage}` : null,
-    }
-    answer.prevLink && data.sort ? answer.prevLink += `&sort=${data.sort}` : null;
-    answer.prevLink && data.query ? answer.prevLink += `&query=${data.query}` : null;
-    answer.nextLink && data.sort ? answer.nextLink += `&sort=${data.sort}` : null;
-    answer.nextLink && data.query ? answer.nextLink += `&query=${data.query}` : null;
-    return answer;
-};
 
 export { router };

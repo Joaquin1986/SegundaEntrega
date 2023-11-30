@@ -1,0 +1,29 @@
+<h1>Vista de Carrito 🛒</h1>
+<article>
+    {{#unless products}}
+    <h3>Carrito {{_id}} vacío!</h3>
+    {{/unless}}
+    <table>
+        <tr>
+            <th>Nombre: </th>
+            <th>Descripción: </th>
+            <th>Precio($): </th>
+            <th>Código: </th>
+            <th>stock: </th>
+            <th> </th>
+        </tr>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.code}}</td>
+                <td>{{this.stock}}</td>
+                <td> <a href="#" role="button" class="outline">Agregar 🛒</a></td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</article>
