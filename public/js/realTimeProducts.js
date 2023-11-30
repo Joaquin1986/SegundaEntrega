@@ -25,7 +25,7 @@ productForm.addEventListener("submit", (event) => {
     alert(`Se creó el producto ${prod.title}. Puede chequearlo en la lista debajo.`);
 });
 
-socket.on("products", ({ products }) => {
+socket.on("products", async ( products ) => {
     const productList = document.getElementById("product-list");
     productList.innerText = "";
     products.forEach((product) => {

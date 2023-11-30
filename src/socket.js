@@ -6,12 +6,20 @@ export const init = async (httpServer) => {
     const socketServer = new Server(httpServer);
     socketServer.on("connection", (socketClient) => {
         console.log(`Cliente conectado exitosamente 👍: id #${socketClient.id}`);
-        socketClient.emit('products', { products });
+        socketClient.emit('products', products);
         socketClient.on('product', async (prod) => {
-            const productoAgregar = new Product(prod.title, prod.description,
-                prod.price, prod.code, prod.stock);
+            const productoAgregar =
+                new Product(
+                    prod.title,
+                    prod.description,
+                    prod.price,
+                    prod.code,
+                    prod.stock
+                );
             await ProductManager.addProduct(productoAgregar);
-            socketServer.emit('products', { products });
+            let result = await ProductManager.getProducts();
+            console.log (result);
+            socketServer.emit('products', result);
         });
     });
 };

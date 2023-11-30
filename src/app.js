@@ -8,6 +8,7 @@ import { router as cartsRouter } from "./routers/api/carts.router.js";
 import { router as homeRouter } from "./routers/views/home.router.js";
 import { router as productsViewsRouter } from "./routers/views/products.router.js";
 import { router as cartsViewsRouter } from "./routers/views/carts.router.js";
+import { router as realTimeProducts} from "./routers/views/realTimeProducts.router.js";
 
 
 // Se crea el sas realTimeProducts
@@ -24,6 +25,7 @@ app.set("view engine", "handlebars");
 app.use("/views", homeRouter);
 app.use("/views", productsViewsRouter);
 app.use("/views", cartsViewsRouter);
+app.use("/views", realTimeProducts);
 app.use("/api", productsApiRouter);
 app.use("/api", cartsRouter);
 
