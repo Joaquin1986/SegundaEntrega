@@ -9,8 +9,7 @@ router.get("/carts/:cid", async (req, res) => {
     if (cid) {
         try {
             const cart = await CartManager.getCartById(cid);
-            console.log(cart)
-            if (cart) return res.status(200).json(cart.products);
+            if (cart) return res.status(200).json(cart);
         } catch (error) {
             return res.status(404).json({ "⛔Error": `Carrito id '${cid}' no encontrado` });
         }
