@@ -6,8 +6,13 @@ const router = Router();
 router.get("/carts/:cid", async (req, res) => {
     const { cid } = req.params;
     if (cid) {
-        const cart = await CartManager.getCartById(cid);
-        res.render('carts', { title: 'Vista de Carrito 🛒', ...cart });
+        let cart = await CartManager.getCartById(cid);
+        const cartArr = { ...cart }; // DESTRUCT DEL OBJETO OBTENIDO MEDIANTE LA CONSULTA A MONGODB
+        cart = []; //LIMPIAMOS EL CART PREVIO PARA PASARLE ÚNICAMENTE LO QUE NECESITAMOS A HANDLEBARS
+        cartArr[0].products.map((prod) => {
+            cart.push(prod);
+        });
+        res.render('carts', { title: 'Vista de Carrito 🛒', cart, cid });
     }
 });
 

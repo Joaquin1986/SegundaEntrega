@@ -10,7 +10,7 @@ import { router as productsViewsRouter } from "./routers/views/products.router.j
 import { router as cartsViewsRouter } from "./routers/views/carts.router.js";
 
 
-// Se crea el server express
+// Se crea el sas realTimeProducts
 const app = express();
 
 app.use(express.json());
